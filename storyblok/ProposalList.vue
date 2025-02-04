@@ -15,9 +15,9 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
-import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import { Navigation, Pagination, Autoplay, EffectCoverflow } from 'swiper/modules';
 
-const modules = [Navigation, Pagination, Autoplay];
+const modules = [Navigation, Pagination, Autoplay, EffectCoverflow];
 
 dayjs.locale('es')
 const sblockStore = useSblokStore()

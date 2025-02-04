@@ -2,10 +2,10 @@
 import {computed, ref} from "vue";
 import {useDisplay} from "vuetify";
 const { mdAndUp } = useDisplay()
-import { marked } from 'marked'
-marked.setOptions({
-  breaks: true,
-});
+// import { marked } from 'marked'
+// marked.setOptions({
+//   breaks: true,
+// });
 
 const props = defineProps({
   blok: Object,

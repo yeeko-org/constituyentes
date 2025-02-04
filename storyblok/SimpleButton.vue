@@ -31,16 +31,29 @@ const variant = computed(() =>
 
   <v-btn
     :size="size"
-    :variant="variant"
+    variant="flat"
     :color="blok.color || 'black'"
-    class="px-5 mx-2 my-2"
+    class="px-3 py-0 mx-2 my-2"
     id="button_new"
     :class="blok.style ? '' : 'white--text'"
     _click="openDialog"
     :to="blok.to.cached_url || blok.to.url"
-    rounded
+    tile
   >
     {{blok.button_title}}
   </v-btn>
+<!--  <span-->
+<!--    :size="size"-->
+<!--    variant="flat"-->
+<!--    :color="blok.color || 'black'"-->
+<!--    class="px-3 py-0 mx-2 my-2"-->
+<!--    id="button_new"-->
+<!--    :class="blok.style ? '' : 'white&#45;&#45;text'"-->
+<!--    _click="openDialog"-->
+<!--    :to="blok.to.cached_url || blok.to.url"-->
+<!--    tile-->
+<!--  >-->
+<!--    {{blok.button_title}}-->
+<!--  </span>-->
 
 </template>

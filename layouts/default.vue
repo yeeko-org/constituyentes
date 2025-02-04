@@ -9,7 +9,8 @@ const { $preview } = useNuxtApp()
 const sblockStore = useSblokStore()
 const { setDocuments, setAllDocuments, setGlobalConfig } = sblockStore
 
-const version = $preview ? 'draft' : 'published'
+// const version = $preview ? 'draft' : 'published'
+const version = 'draft'
 
 onMounted(() => {
   nextTick(() => {

@@ -1,7 +1,9 @@
 import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
-
+import dotenv from 'dotenv'
 // import fs from 'fs'
 // import path from 'path'
+
+dotenv.config()
 export default defineNuxtConfig({
   //...
   build: {
@@ -31,7 +33,6 @@ export default defineNuxtConfig({
       }
     ]
   ],
-
   // set .pem and .key files to be served by vite and build https
   devServer: {
     https: {
@@ -46,7 +47,6 @@ export default defineNuxtConfig({
       Montserrat: [400, 700, 900]
     }
   },
-
   vite: {
     vue: {
       template: {
@@ -54,7 +54,6 @@ export default defineNuxtConfig({
       },
     },
   },
-
   app: {
     head: {
       titleTemplate: 'Observatorio Electoral Judicial (OEJ)',

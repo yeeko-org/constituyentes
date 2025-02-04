@@ -3,7 +3,6 @@ import ApiService from "./common";
 import colorMixin from "~/mixins/colorMixin";
 // import { mande } from 'mande'
 import * as d3 from 'd3';
-import {status_filters} from "~/composables/filters.js";
 
 const calculate_status = (status_control) => {
   return status_control.reduce((obj, st) => {
@@ -135,14 +134,15 @@ const calculateSchemas = (data) => {
       return arr
     }, [])
     coll.status_groups = status_groups
-    status_groups.forEach(sg => {
-      const status = status_filters[sg]
-      collection_filters.push(status)
-      available_sorts.push({
-        value: `${status.collection}__order`,
-        title: `Status ${status.name}`
-      })
-    })
+    // status_groups.forEach(sg => {
+    //   const status = status_filters[sg]
+    //   const status = status_filters[sg]
+    //   collection_filters.push(status)
+    //   available_sorts.push({
+    //     value: `${status.collection}__order`,
+    //     title: `Status ${status.name}`
+    //   })
+    // })
     if (coll.name_field)
       available_sorts.push({
         title: "Nombre / Título",

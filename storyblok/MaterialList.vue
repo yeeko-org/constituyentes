@@ -22,7 +22,6 @@ const selectedMats = ref([])
 const typeMaterials = ref({
   "para Redes Sociales": ["#dabdff", "#c192ff", "purple"],
   "Audiovisual": ["#feaabc", "#fd7291", "pink"],
-  "para Impresión": ["#dedede", "#c6c6c6", "grey"],
 })
 
 // Computed properties

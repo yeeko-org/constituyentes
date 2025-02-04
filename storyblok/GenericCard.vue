@@ -62,6 +62,10 @@ const final_sm_align = computed(() => {
   return orientToAlign(props.blok.align_md)
 })
 
+const flex_type = computed(() => {
+  return props.blok.vertical_buttons ? 'flex-column' : 'flex-row'
+})
+
 const blok_header = computed(() => {
   return {
     subheader: props.blok.title,
@@ -87,13 +91,12 @@ const blok_header = computed(() => {
     :order-md="blok.order_md || 1"
   >
     <v-card
-      :variant="variant_card"
+      variant="elevated"
       :color="blok.background_color2 || 'transparent'"
       :class="`${blok.free_class} text-${blok.align_text} text-sm-${blok.align_md}`"
       class="rounded-0 d-flex flex-column justify-center fill-height py-0 py-sm-4"
       elevation="0"
     >
-
       <div>
         <div
           v-if="false"
@@ -104,13 +107,17 @@ const blok_header = computed(() => {
           v-if="blok.title"
           :blok="blok_header"
         />
-        <v-card-text v-if="blok.description2" class="py-2 py-sm-4">
+        <v-card-text v-if="blok.description2" class="py-2 py-sm-4 montserrat">
           <div
-            class="text-text-1 text-sm-subtitle-1 _mt-2 _mt-sm-4 lato"
+            class="text-text-1 text-sm-subtitle-1 _mt-2 _mt-sm-4"
             v-html="description2"
           ></div>
         </v-card-text>
-        <v-card-actions v-if="blok.buttons.length">
+        <v-card-actions
+          v-if="blok.buttons.length"
+          class="d-flex"
+          :class="flex_type"
+        >
           <v-spacer></v-spacer>
           <StoryblokComponent
             v-for="blok in blok.buttons"

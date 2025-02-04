@@ -1,16 +1,18 @@
 <script setup>
 import { onMounted, ref, nextTick } from 'vue'
-import {useMainStore} from '~/store/index'
+import {useSblokStore} from "~/store/sblok.js";
 const { $preview } = useNuxtApp()
 // const version_sb = process.env.NUXT_PUBLIC_STORYBLOK_VERSION
-const version = $preview ? 'draft' : 'published'
+// const version = $preview ? 'draft' : 'published'
+const version = 'draft'
+// console.log("version", version)
 const story = await useAsyncStoryblok(
     'home',
     { version: version },
 { customParent: 'https://app.storyblok.com' }
 )
-const mainStore = useMainStore()
-const { setDocuments, setGlobalConfig } = mainStore
+const sblockStore = useSblokStore()
+const { setDocuments, setGlobalConfig } = sblockStore
 const storyblokApi = useStoryblokApi();
 
 useSeoMeta({

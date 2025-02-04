@@ -18,9 +18,15 @@ export default defineNuxtPlugin((app) => {
             // primary: colors.indigo.darken1,
             // secondary: '#424242',
             // accent: colors.teal.accent4,
-            primary: "#ff002f",
-            secondary: "#d7a997",
-            accent: "#1e1e1e",
+            primary: "#212121",
+            secondary: "#eeeeee",
+            accent: "#f93647",
+            orange: "#ff6622",
+            blue: "#3f51b5",
+            green: "#04b53b",
+            brown: "#b45e06",
+            info: "#d5bbfa",
+            yellow: "#f9e05a",
           }
         }
       }
@@ -37,10 +43,10 @@ export default defineNuxtPlugin((app) => {
         'es-MX': {
           firstDayOfWeek: 0,
           masks: {
-              input: 'DD/MM/YYYY',
-              date: 'DD/MM/YYYY',
-              time: 'HH:mm',
-              datetime: 'DD/MM/YYYY HH:mm',
+            input: 'DD/MM/YYYY',
+            date: 'DD/MM/YYYY',
+            time: 'HH:mm',
+            datetime: 'DD/MM/YYYY HH:mm',
           },
         },
       },

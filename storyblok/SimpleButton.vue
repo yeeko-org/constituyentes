@@ -33,7 +33,7 @@ const variant = computed(() =>
     :size="size"
     :variant="variant"
     :color="blok.color || 'black'"
-    class="px-5 mx-2"
+    class="px-5 mx-2 my-2"
     id="button_new"
     :class="blok.style ? '' : 'white--text'"
     _click="openDialog"

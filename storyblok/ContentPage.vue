@@ -1,13 +1,13 @@
 <script setup>
 import CommonTitle from "../components/CommonTitle.vue";
 import {storeToRefs} from "pinia";
-import {useMainStore} from '~/store/index'
+import {useSblokStore} from "~/store/sblok.js";
 import dayjs from 'dayjs'
 import 'dayjs/locale/es'
 dayjs.locale('es')
-const mainStore = useMainStore()
+const sblockStore = useSblokStore()
 // Store setup and state
-const { all_documents } = storeToRefs(mainStore)
+const { all_documents } = storeToRefs(sblockStore)
 
 const props = defineProps({
   blok: Object,

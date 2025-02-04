@@ -3,7 +3,7 @@ import dayjs from 'dayjs'
 import 'dayjs/locale/es'
 import { ref, computed } from 'vue'
 import { storeToRefs } from 'pinia'
-import {useMainStore} from '~/store/index'
+import {useSblokStore} from "~/store/sblok.js";
 
 import { useDisplay } from 'vuetify'
 const { xs, smAndUp } = useDisplay()
@@ -12,9 +12,9 @@ import * as d3 from 'd3'
 import Document from "~/storyblok/Document.vue"
 
 dayjs.locale('es')
-const mainStore = useMainStore()
+const sblockStore = useSblokStore()
 // Store setup and state
-const { all_documents } = storeToRefs(mainStore)
+const { all_documents } = storeToRefs(sblockStore)
 
 // Props
 const props = defineProps({
@@ -112,83 +112,83 @@ const filteredDocs = computed(() => {
   <v-card>
     HOLA MUNDO
   </v-card>
-<!--  <SectionHeader-->
-<!--    v-for="blok in blok?.header"-->
-<!--    :key="blok._uid"-->
-<!--    :blok="blok"-->
-<!--    class="px-3"-->
-<!--  />-->
-<!--  <v-card-->
-<!--    v-editable="blok"-->
-<!--    style="width: 100%"-->
-<!--    class="px-3 pb-4"-->
-<!--    variant="flat"-->
-<!--    color="transparent"-->
-<!--  >-->
-<!--    <div-->
-<!--      class="d-flex justify-center align-center flex-column flex-md-row"-->
-<!--      style="width: 100%"-->
+  <SectionHeader
+    v-for="blok in blok?.header"
+    :key="blok._uid"
+    :blok="blok"
+    class="px-3"
+  />
+  <v-card
+    v-editable="blok"
+    style="width: 100%"
+    class="px-3 pb-4"
+    variant="flat"
+    color="transparent"
+  >
+    <div
+      class="d-flex justify-center align-center flex-column flex-md-row"
+      style="width: 100%"
+    >
+      <div class="mr-2 text-sm-subtitle-1 text-body-1 text-grey-darken-2">
+        Filtrar meses:
+      </div>
+      <v-chip-group multiple v-model="selected_months">
+        <v-chip
+          v-for="month in all_months"
+          :key="month"
+          class="mx-1"
+          filter
+          variant="outlined"
+          color="accent"
+        >
+          {{ month }}
+        </v-chip>
+      </v-chip-group>
+
+      <span class="mr-2 text-subtitle-1 ml-4">Filtrar documentos:</span>
+      <v-chip-group multiple v-model="selectedDocs">
+        <v-chip
+          v-for="typeDoc in all_types"
+          :key="typeDoc.name"
+          class="mx-1"
+          filter
+          variant="outlined"
+          :color="typeDoc.colors[2]"
+        >
+          {{ typeDoc.name }}
+        </v-chip>
+      </v-chip-group>
+    </div>
+    <v-row class="my-3">
+      <v-col
+        v-for="(item, idx) in filteredDocs"
+        :key="item._uid"
+        cols="12"
+        md="6"
+      >
+        <Document
+          :item="item"
+        />
+      </v-col>
+    </v-row>
+<!--    <template-->
+<!--      v-if="!show_all && (blok?.init_display || 999) < final_docs.length"-->
 <!--    >-->
-<!--      <div class="mr-2 text-sm-subtitle-1 text-body-1 text-grey-darken-2">-->
-<!--        Filtrar meses:-->
-<!--      </div>-->
-<!--      <v-chip-group multiple v-model="selected_months">-->
-<!--        <v-chip-->
-<!--          v-for="month in all_months"-->
-<!--          :key="month"-->
-<!--          class="mx-1"-->
-<!--          filter-->
-<!--          variant="outlined"-->
-<!--          color="accent"-->
-<!--        >-->
-<!--          {{ month }}-->
-<!--        </v-chip>-->
-<!--      </v-chip-group>-->
 
-<!--      <span class="mr-2 text-subtitle-1 ml-4">Filtrar documentos:</span>-->
-<!--      <v-chip-group multiple v-model="selectedDocs">-->
-<!--        <v-chip-->
-<!--          v-for="typeDoc in all_types"-->
-<!--          :key="typeDoc.name"-->
-<!--          class="mx-1"-->
-<!--          filter-->
-<!--          variant="outlined"-->
-<!--          :color="typeDoc.colors[2]"-->
-<!--        >-->
-<!--          {{ typeDoc.name }}-->
-<!--        </v-chip>-->
-<!--      </v-chip-group>-->
-<!--    </div>-->
-<!--    <v-row class="my-3">-->
-<!--      <v-col-->
-<!--        v-for="(item, idx) in filteredDocs"-->
-<!--        :key="item._uid"-->
-<!--        cols="12"-->
-<!--        md="6"-->
-<!--      >-->
-<!--        <Document-->
-<!--          :item="item"-->
-<!--        />-->
-<!--      </v-col>-->
-<!--    </v-row>-->
-<!--&lt;!&ndash;    <template&ndash;&gt;-->
-<!--&lt;!&ndash;      v-if="!show_all && (blok?.init_display || 999) < final_docs.length"&ndash;&gt;-->
-<!--&lt;!&ndash;    >&ndash;&gt;-->
-
-<!--      <v-card-actions-->
-<!--        v-if="!show_all && (final_display < final_docs.length)"-->
-<!--      >-->
-<!--        <v-spacer></v-spacer>-->
-<!--        <v-btn-->
-<!--          color="accent"-->
-<!--          variant="outlined"-->
-<!--          append-icon="expand_more"-->
-<!--          @click="show_all = true"-->
-<!--        >-->
-<!--          Mostrar más-->
-<!--        </v-btn>-->
-<!--        <v-spacer></v-spacer>-->
-<!--      </v-card-actions>-->
-<!--&lt;!&ndash;    </template>&ndash;&gt;-->
-<!--  </v-card>-->
+      <v-card-actions
+        v-if="!show_all && (final_display < final_docs.length)"
+      >
+        <v-spacer></v-spacer>
+        <v-btn
+          color="accent"
+          variant="outlined"
+          append-icon="expand_more"
+          @click="show_all = true"
+        >
+          Mostrar más
+        </v-btn>
+        <v-spacer></v-spacer>
+      </v-card-actions>
+<!--    </template>-->
+  </v-card>
 </template>

@@ -13,13 +13,13 @@ const props = defineProps({
 const is_mounted = ref(false)
 
 onMounted(() => {
-  console.log('global_config 1', global_config.value)
+  // console.log('global_config 1', global_config.value)
   is_mounted.value = true
 })
 
 const main_blok = computed(() => {
   if (props.blok) return props.blok
-  console.log('global_config 2', global_config.value)
+  // console.log('global_config 2', global_config.value)
   const global_c = global_config.value
   if (global_c && global_c.footer && global_c.footer.length > 0)
     return global_c.footer[0]
@@ -42,13 +42,13 @@ function wantOpenLink(url) {
     padless
     id="app"
     v-editable="blok"
-    color="primary"
+    color="secondary"
     class="py-6"
     style="width: 100%;"
   >
     <v-row
-        class="app-width2"
       v-if="main_blok"
+      class="app-width2"
     >
       <v-col
         cols="8"
@@ -58,7 +58,7 @@ function wantOpenLink(url) {
         class="text-left pa-8"
       >
         <v-img
-          src="~/assets/nuevo_logo_full.png"
+          src="~/assets/logo_cuadrado.png"
           :height="'100%'"
           :width="'100%'"
           max-height="280"

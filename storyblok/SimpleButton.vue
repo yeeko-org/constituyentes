@@ -7,14 +7,15 @@ const props = defineProps({
   blok: Object
 })
 
-const size = computed(() =>
+const size = computed(() => {
   // :x-large="$breakpoint.is.smAndUp && blok.size == 'x-large'"
   // :large="($breakpoint.is.xs && blok.size == 'x-large') || blok.size == 'large'"
   // :small="blok.size == 'x-large'"
-  props.blok.size === 'x-large'
+  console.log("blok.to", props.blok.to)
+  return props.blok.size === 'x-large'
     ? (xs.value ? 'large' : undefined)
     : 'small'
-)
+})
 const variant = computed(() =>
   // :outlined="blok.style == 'outlined'"
   // :text="blok.style == 'text'"
@@ -24,6 +25,12 @@ const variant = computed(() =>
     ? 'text'
     : 'elevated'
 )
+
+function goToLink() {
+  console.log('goToLink', props.blok.to)
+  const url = props.blok.to.cached_url || props.blok.to.url
+  window.open(url, '_blank')
+}
 
 </script>
 
@@ -36,8 +43,8 @@ const variant = computed(() =>
     class="px-3 py-0 mx-2 my-2"
     id="button_new"
     :class="blok.style ? '' : 'white--text'"
-    _click="openDialog"
-    :to="blok.to.cached_url || blok.to.url"
+    @click="goToLink"
+
     tile
   >
     {{blok.button_title}}

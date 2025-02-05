@@ -16,14 +16,12 @@ const { setDocuments, setGlobalConfig } = sblockStore
 const storyblokApi = useStoryblokApi();
 
 useSeoMeta({
-  title: 'Observatorio Electoral Judicial',
-  ogTitle: 'Observatorio Electoral Judicial',
-  description: 'Documentación, análisis y difusión las decisiones, ' +
-          'los problemas y toda la información relevante del proceso electoral ' +
-          'del Poder Judicial 2024-2025',
-  ogDescription: 'Documentación, análisis y difusión las decisiones, ' +
-          'los problemas y toda la información relevante del proceso electoral ' +
-          'del Poder Judicial 2024-2025',
+  title: 'Constituyentes',
+  ogTitle: 'Constituyentes',
+  description: 'Constituyentes es un espacio democrático para repensar,' +
+    'proponer y transformar las dinámicas políticas, sociales y económicas',
+  ogDescription: 'Constituyentes es un espacio democrático para repensar,' +
+      'proponer y transformar las dinámicas políticas, sociales y económicas',
   ogType: 'website',
   ogImage: 'https://oej.yeeko.org/_nuxt/nuevo_logo.ChaL5KSF.png',
 })

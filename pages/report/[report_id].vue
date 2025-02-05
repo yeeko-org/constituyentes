@@ -41,15 +41,13 @@ useHead({
   // script: [ { innerHTML: 'console.log(\'Hello world\')' } ]
 })
 useSeoMeta({
-  title: `${story.value.content?.document[0].name} - Observatorio Electoral Judicial`,
-  ogTitle: `${story.value.content?.document[0].name} (Observatorio Electoral Judicial)`,
-  description: 'Documentar y analizar las decisiones, ' +
-          'los problemas y toda la información relevante del proceso electoral ' +
-          'del Poder Judicial 2024-2025 .',
+  title: `${story.value.content?.document[0].name} - Constituyentes`,
+  ogTitle: `${story.value.content?.document[0].name} Constituyentes`,
+  description: 'Constituyentes es un espacio democrático para repensar,' +
+      'proponer y transformar las dinámicas políticas, sociales y económicas',
   type: 'article',
-  ogDescription: 'Documentar y analizar las decisiones, ' +
-          'los problemas y toda la información relevante del proceso electoral ' +
-          'del Poder Judicial 2024-2025',
+  ogDescription: 'Constituyentes es un espacio democrático para repensar,' +
+      'proponer y transformar las dinámicas políticas, sociales y económicas',
   ogImage: 'https://oej.yeeko.org/_nuxt/nuevo_logo.ChaL5KSF.png',
 })
 

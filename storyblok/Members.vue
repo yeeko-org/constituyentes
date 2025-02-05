@@ -37,44 +37,46 @@ const final_color = computed(() => {
           <v-spacer></v-spacer>
         </v-card-actions>
 
-        <v-row>
+        <v-row class="pb-6 mx-0">
           <v-col
             v-for="member in blok.members"
             :key="member._uid"
-            class="d-flex child-flex px-2"
             cols="6"
             sm="4"
             md="3"
           >
-            <v-card flat tile class="d-flex">
-              <v-hover v-slot:default="{ hover }">
-                <v-row no-gutters>
-                  <v-col cols="12">
-                    <v-img
-                      :src="resizeImg(member.profile_img, 300)"
-                      aspect-ratio="1"
-                      class="grey lighten-2"
-                    ></v-img>
-                    <v-fade-transition>
-                      <v-overlay
-                        v-if="hover"
-                        absolute
-                        style="overflow: hidden; vertical-align: top;"
-                        color="#036358"
-                        class="text-body-2"
-                      >
-                        <div>{{ member.biography?.substr(0, 300) }}</div>
-                      </v-overlay>
-                    </v-fade-transition>
-                  </v-col>
-                  <v-col cols="12" align-self="center">
-                    <div class="text-subtitle-1 primary--text font-weight-bold">
-                      {{ member.full_name }}
-                    </div>
-                  </v-col>
-                </v-row>
-              </v-hover>
-            </v-card>
+            <v-hover v-slot="{ isHovering, props }">
+              <v-card
+                flat
+                rounded="xl"
+                color="#d1d7855e"
+                class="d-flex flex-column justify-space-between px-1 pt-3"
+                v-bind="props"
+              >
+                <v-img
+                  :src="resizeImg(member.profile_img, 300)"
+                  aspect-ratio="1"
+                  class="grey lighten-2"
+                ></v-img>
+                <v-card-text>
+                  <h2 class="text-h6" :class="`text-${blok.name_color || 'white'}`">
+                    {{ member.full_name }}
+                  </h2>
+                </v-card-text>
+
+                <v-overlay
+                  :model-value="!!isHovering"
+                  class="align-center text-body-2 text-white"
+                  scrim="#036358"
+                  opacity="0.7"
+                  contained
+                >
+                  <div class="px-2 text-justify">
+                    {{ member.biography?.substr(0, 350) }}
+                  </div>
+                </v-overlay>
+              </v-card>
+            </v-hover>
           </v-col>
 
           <v-col cols="12" align="center" v-if="false">

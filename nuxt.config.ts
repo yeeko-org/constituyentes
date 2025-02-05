@@ -56,8 +56,8 @@ export default defineNuxtConfig({
   },
   app: {
     head: {
-      titleTemplate: 'Observatorio Electoral Judicial (OEJ)',
-      title: 'OEJ (Observatorio Electoral Judicial)',
+      titleTemplate: 'Constituyentes',
+      title: 'Constituyentes',
       charset: 'utf-8',
       viewport: 'width=device-width, initial-scale=1',
       meta: [
@@ -66,9 +66,8 @@ export default defineNuxtConfig({
         {
           hid: 'description',
           name: 'description',
-          content: 'Documentamos, analizamos y difundimos las decisiones, ' +
-            'los problemas y toda la información relevante del proceso electoral ' +
-            'del Poder Judicial 2024-2025'
+          content: 'Constituyentes es un espacio democrático para repensar,' +
+              'proponer y transformar las dinámicas políticas, sociales y económicas',
         }
       ],
       link: [

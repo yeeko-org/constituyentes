@@ -63,8 +63,9 @@ const all_buttons = [
       class="px-3"
     >
       <router-link to="/" class="d-flex align-center">
+<!--          src="~/assets/constituyentes_branding_logo_gif.gif"-->
         <v-img
-          src="~/assets/constituyentes_branding_logo_gif.gif"
+          src="~/assets/logo_principal.png"
           :height="xs ? 64 : 76"
           :width="xs ? 264 : 276"
         />

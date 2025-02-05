@@ -6,7 +6,7 @@ import { storeToRefs } from 'pinia'
 import {useSblokStore} from "~/store/sblok.js";
 
 import { useDisplay } from 'vuetify'
-const { xs, smAndUp } = useDisplay()
+const { xs, smAndUp, mobile } = useDisplay()
 import {proposals, axis} from '~/composables/proposals.js'
 import * as d3 from 'd3'
 
@@ -28,6 +28,10 @@ const { all_documents } = storeToRefs(sblockStore)
 const props = defineProps({
   blok: Object,
   init_documents: Array,
+})
+
+onMounted(() => {
+  console.log("mobile", mobile.value)
 })
 
 const typeDocuments = {
@@ -61,48 +65,41 @@ const proposals_hydrated = computed(() => {
     :blok="blok"
     class="px-3"
   />
-  <Swiper
-    :modules="modules"
-    :slides-per-view="3.2"
-    :space-between="10"
-    :loop="true"
-    :navigation="true"
-    :pagination="false"
-    :autoplay="{ delay: 3000, disableOnInteraction: true }"
-    class="my-swiper"
-  >
-    <SwiperSlide v-for="proposal in proposals_hydrated" :key="proposal.idx">
-      <v-card
-        class="my-2 mx-2"
-        _width="300"
-        style="width: 100%;"
-      >
-        <v-chip size="small" class="ma-2">
-          {{proposal.axis_data.name}}
-        </v-chip>
-        <v-card-text class="pt-0">
-          <b>Propuesta {{proposal.idx}}:</b>
-          {{proposal.name}}
-        </v-card-text>
-      </v-card>
 
-    </SwiperSlide>
-  </Swiper>
-  <div class="d-flex flex-wrap justify-center" v-if="false">
-    <v-card
-      v-for="proposal in proposals_hydrated"
-      :key="proposal.idx"
-      class="my-2 mx-2"
-      width="300"
+  <div class="my-swiper">
+    <Swiper
+      :modules="modules"
+      :slides-per-view="smAndUp ? 3.2 : 1.2"
+      :space-between="10"
+      :loop="true"
+      :navigation="true"
+      :pagination="false"
+      :autoplay="{ delay: 3000, disableOnInteraction: true }"
+
     >
-      <v-chip size="small" class="ma-2">
-        {{proposal.axis_data.name}}
-      </v-chip>
-      <v-card-text class="pt-0">
-        <b>Propuesta {{proposal.idx + 1}}:</b>
-        {{proposal.name}}
-      </v-card-text>
-    </v-card>
+      <SwiperSlide
+        v-for="proposal in proposals_hydrated"
+        :key="proposal.idx"
+      >
+        <v-card
+          class="my-2 mx-2"
+          _style="width: 100%;"
+        >
+          <v-chip
+            _size="small"
+            class="ma-2"
+            :color="blok.chip_color || 'primary'"
+            variant="outlined"
+          >
+            {{proposal.axis_data.name}}
+          </v-chip>
+          <v-card-text class="pt-0 text-body-1">
+            <b>Propuesta {{proposal.idx}}:</b>
+            {{proposal.name}}
+          </v-card-text>
+        </v-card>
+      </SwiperSlide>
+    </Swiper>
   </div>
 
 </template>
@@ -112,5 +109,19 @@ const proposals_hydrated = computed(() => {
   width: 100%;
   height: auto;
   object-fit: cover;
+}
+.my-swiper {
+  max-width: 100%;
+}
+
+@media (max-width: 500px) {
+  .my-swiper {
+    max-width: 400px;
+  }
+}
+@media (max-width: 600px) {
+  .my-swiper {
+    max-width: 400px;
+  }
 }
 </style>

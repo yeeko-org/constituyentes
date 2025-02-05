@@ -2,9 +2,16 @@
 
 // import { ref } from 'vue'
 import { useDisplay } from 'vuetify'
+import {computed} from "vue";
 const { xs, mdAndUp, smAndDown } = useDisplay()
+import {useSblokStore} from "~/store/sblok.js";
+import { storeToRefs } from 'pinia'
+
+const sblockStore = useSblokStore()
+const { global_config } = storeToRefs(sblockStore)
 
 const props = defineProps({
+  blok: Object,
   is_editable: Boolean,
 })
 
@@ -12,6 +19,15 @@ const props = defineProps({
 // const logo = ref(null)
 // const menu = ref(false)
 // const font_size = computed(() => xs.value ? 12 : 14)
+
+const main_blok = computed(() => {
+  if (props.blok) return props.blok
+  // console.log('global_config 2', global_config.value)
+  const global_c = global_config.value
+  if (global_c && global_c.header && global_c.header.length > 0)
+    return global_c.header[0]
+})
+
 const full_objectives = [
   {
     name: 'objetivo1',
@@ -26,6 +42,12 @@ const full_objectives = [
     button_title: 'Objetivo 3',
   },
 ]
+
+const final_buttons = computed(() => {
+  if (!main_blok.value) return []
+  console.log("main_blok.buttons", main_blok.value.buttons)
+  return main_blok.value.buttons
+})
 
 const all_buttons = [
   {
@@ -58,6 +80,7 @@ const all_buttons = [
     height="60"
     app
     class="_app-width2"
+    v-editable="blok"
   >
     <div
       class="px-3"
@@ -80,7 +103,7 @@ const all_buttons = [
     <v-spacer></v-spacer>
     <div>
       <v-menu
-          v-if="false"
+        v-if="false"
         transition="slide-y-transition"
         bottom
       >
@@ -106,14 +129,27 @@ const all_buttons = [
           </v-list-item>
         </v-list>
       </v-menu>
-      <v-btn
-        v-for="button in all_buttons"
-        variant="text"
-        color="white"
+      <template
+        v-if="final_buttons.length"
       >
+        <StoryblokComponent
+          v-for="blok in final_buttons"
+          :key="blok._uid"
+          :blok="blok"
+          fixed_size="default"
+          fixed_variant="text"
+          fixed_color="white"
+        ></StoryblokComponent>
+      </template>
 
-        {{ button.title }}
-      </v-btn>
+<!--      <v-btn-->
+<!--        v-for="button in all_buttons"-->
+<!--        variant="text"-->
+<!--        color="white"-->
+<!--      >-->
+
+<!--        {{ button.title }}-->
+<!--      </v-btn>-->
     </div>
   </v-app-bar>
 </template>

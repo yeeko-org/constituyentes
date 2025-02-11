@@ -6,7 +6,7 @@ import { storeToRefs } from 'pinia'
 import {useSblokStore} from "~/store/sblok.js";
 
 import { useDisplay } from 'vuetify'
-const { xs, smAndUp, mobile } = useDisplay()
+const { xs, sm, smAndUp, lgAndUp, mobile } = useDisplay()
 import {proposals, axis} from '~/composables/proposals.js'
 import * as d3 from 'd3'
 
@@ -69,13 +69,12 @@ const proposals_hydrated = computed(() => {
   <div class="my-swiper">
     <Swiper
       :modules="modules"
-      :slides-per-view="smAndUp ? 3.2 : 1.2"
+      :slides-per-view="smAndUp ? 2.8 : (lgAndUp ? 3.2 : 1.2)"
       :space-between="10"
       :loop="true"
       :navigation="true"
       :pagination="false"
       :autoplay="{ delay: 3000, disableOnInteraction: true }"
-
     >
       <SwiperSlide
         v-for="proposal in proposals_hydrated"

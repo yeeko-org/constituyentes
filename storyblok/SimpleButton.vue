@@ -17,9 +17,10 @@ const size = computed(() => {
   console.log("blok.to", props.blok.to)
   if (props.fixed_size)
     return props.fixed_size
-  return props.blok.size === 'x-large'
-    ? (xs.value ? 'large' : undefined)
-    : 'small'
+  return props.blok.size
+  // return props.blok.size === 'x-large'
+  //   ? (xs.value ? 'large' : undefined)
+  //   : 'small'
 })
 
 

@@ -145,6 +145,5 @@ const blok_header = computed(() => {
   width: 8px;
   height: 80%;
   border-radius: 0 10px 10px 0;
-
 }
 </style>
